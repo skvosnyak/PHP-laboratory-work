@@ -1,0 +1,5 @@
+textarea {
+    display: flex;
+    margin: 100px auto;
+    justify-content: center;
+}

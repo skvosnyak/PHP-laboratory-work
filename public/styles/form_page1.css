@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+form {
+    font-size: 28px;
+    background-color: rgb(250 250 250 / 0.62);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    margin: 100px auto;
+    align-content: center;
+    width: fit-content;
+}
+
+.radioInput {
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    margin: 0 auto;
+    color: white;
+    width: fit-content;
+    padding: 15px 20px;
+    background-color: #3484ff;
+    border-radius: 20px;
+}
+
+.linkToFormData {
+    margin-top: 150px;
+}
+
+input {
+    border: 2px solid #3484ff;
+    border-radius: 20px;
+    padding: 10px;
+}
