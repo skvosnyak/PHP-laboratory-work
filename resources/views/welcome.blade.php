@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Europe/Moscow');
 $title = "Задание: Hello, World!";
-$currentTime = date("d.m.Y H:i:s"); 
+$currentTime = date("d.m.Y H:i:s");
 $helloMessage = "Hello, World!";
 
 $hour = date("H");
@@ -23,11 +23,11 @@ if ($hour < 12) {
     <link rel="stylesheet" href="/styles/welcome.css">
 </head>
 <body>
-    <div class="header">
-        <img class="logo" src="/src/polytech_logo_main_RGB.png">
+    <header class="header">
+        <a href="/"><img class="logo" src="/src/polytech_logo_main_RGB.png"></a>
         <div class="title"><?= $title ?></div>
         <div style="width: 100px;"></div>
-    </div>
+    </header>
 
     <div class="main">
         <div class="content">
@@ -37,8 +37,11 @@ if ($hour < 12) {
         </div>
     </div>
 
-    <div class="footer">
+    <ul class="tasks">
+        <li><a href="/form">Перейти к форме</a></li>
+    </ul>
+    <footer class="footer">
       Задание для самостоятельной работы
-    </div>
+    </footer>
 </body>
 </html>

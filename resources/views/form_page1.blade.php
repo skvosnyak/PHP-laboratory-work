@@ -12,11 +12,11 @@ $title = "Feedback Form"
     <link rel="stylesheet" href="/styles/form_page1.css">
 </head>
 <body>
-<div class="header">
-    <img class="logo" src="/src/polytech_logo_main_RGB.png">
+<header class="header">
+    <a href="/"><img class="logo" src="/src/polytech_logo_main_RGB.png"></a>
     <div class="title"><?= $title ?></div>
     <div style="width: 100px;"></div>
-</div>
+</header>
 
 <main>
     <form action="https://httpbin.org/post" method="POST">
@@ -48,8 +48,8 @@ $title = "Feedback Form"
     </form>
 </main>
 
-<div class="footer">
+<footer class="footer">
     Задание для самостоятельной работы
-</div>
+</footer>
 </body>
 </html>

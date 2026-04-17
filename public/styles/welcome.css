@@ -1,4 +1,8 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f0f2f5;
@@ -7,8 +11,8 @@ body {
     justify-content: space-between;
     min-height: 100vh;
 }
-.header {
-  background-color: darkslateblue;
+header {
+  background-color: rgb(72 61 139 / 0.68);
     color: #fff;
     padding: 1rem 2rem;
     display: flex;
@@ -57,7 +61,7 @@ body {
     color: #666;
     margin-top: 1rem;
 }
-.footer {
+footer {
     background: #333;
     color: white;
     text-align: center;
