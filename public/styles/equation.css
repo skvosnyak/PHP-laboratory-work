@@ -1,0 +1,25 @@
+.equationTitle {
+    color: white;
+    margin: 10px auto 5px auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.resultTitle {
+    color: white;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+section {
+    width: fit-content;
+    margin: 0 auto;
+    background-color: #666;
+    padding: 30px;
+    border-radius: 30px;
+}

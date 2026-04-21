@@ -13,3 +13,7 @@ Route::get('/form', function () {
 Route::get('/form/data', function () {
     return view('form_page2');
 });
+
+Route::get('/equation', function () {
+    return view('equation');
+});
