@@ -1,0 +1,62 @@
+.gridCalculator {
+    padding: 20px;
+    border-radius: 30px;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.gridContainer {
+    background-color: #252a2d;
+    border-radius: 20px;
+}
+
+.buttonCalc, .buttonDivide, .buttonMinus, .buttonPlus, .buttonMultiple, .buttonClear, .buttonCount {
+    font-size: 24px;
+    line-height: 28px;
+    padding: 20px 40px;
+    border-radius: 15px;
+    background-color: #666666;
+    color: white;
+}
+
+.buttonCalc:hover, .buttonDivide:hover, .buttonMinus:hover, .buttonPlus:hover, .buttonMultiple:hover {
+    background-color: #7c7b7b;
+    transition: all 0.4s;
+}
+
+.buttonCalc:active, .buttonDivide:active, .buttonMinus:active, .buttonPlus:active, .buttonMultiple:active {
+    background-color: #333333;
+    transition: all 0.4s;
+}
+
+.showInput {
+    overflow: hidden;
+    max-height: 100%;
+    border-radius: 20px;
+    padding: 30px;
+    border: 2px solid #333333;
+    background-color: rgb(180 178 178 / 0.78);
+    grid-column: 1/-1;
+    width: 300px;
+    height: 82px;
+    margin-bottom: 15px;
+}
+
+.buttonCount {
+    background-color: #3484ff;
+}
+
+.buttonClear {
+    background-color: #3484ff;
+}
+
+.buttonClear:active, .buttonCount:active {
+    background-color: #103060;
+    transition: all 0.4s;
+}
+.buttonCount:hover, .buttonClear:hover {
+    background-color: #3b639f;
+    transition: all 0.4s;
+}
+

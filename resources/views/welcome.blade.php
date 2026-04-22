@@ -29,7 +29,7 @@ if ($hour < 12) {
         <div style="width: 100px;"></div>
     </header>
 
-    <div class="main">z
+    <div class="main">
         <div class="content">
             <div class="greeting"><?=$greeting?>!</div>
             <div class="hello"><?=$helloMessage?></div>
@@ -40,6 +40,7 @@ if ($hour < 12) {
     <ul class="tasks">
         <li><a href="/form">Перейти к форме</a></li>
         <li><a href="/equation">Перейти к Solve the equation</a></li>
+        <li><a href="/calculator">Перейти к калькулятору</a></li>
     </ul>
     <footer class="footer">
       Задание для самостоятельной работы
