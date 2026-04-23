@@ -22,12 +22,12 @@ $title = "Feedback Form"
     <form action="https://httpbin.org/post" method="POST">
         <div>
             <label for="nameInput">Ваше имя:</label>
-            <input id="nameInput" type="text">
+            <input id="nameInput" type="text" name="name">
         </div>
 
         <div>
             <label for="emailInput">Email:</label>
-            <input id="emailInput" type="email">
+            <input id="emailInput" type="email" name="email">
         </div>
 
         <div>Тип обращения:</div>

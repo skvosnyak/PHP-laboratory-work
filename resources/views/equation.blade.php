@@ -1,6 +1,6 @@
 <?php
 $title = "Solve the equation";
-$equation = "X + 67 = 129";
+$equation = "76 + X = 129";
 $parts = explode(" ", $equation);
 $a = $parts[0];
 $op = $parts[1];
