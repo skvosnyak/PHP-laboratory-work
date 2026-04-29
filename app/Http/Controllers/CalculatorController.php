@@ -13,15 +13,15 @@ class CalculatorController extends Controller
         if (empty($expression)) {
             return response()->json([
                 'success' => false,
-                'error' => 'Введите выражение'
+                'error' => 'Выражение не может быть пустым'
             ]);
         }
 
         try {
-            if (!preg_match('/^[0-9+\-*\/\(\)\s]+$/', $expression)) {
+            if (!preg_match('/^[0-9+\-*\/\(\)\s\.]+$/', $expression)) {
                 return response()->json([
                     'success' => false,
-                    'error' => 'Недопустимые символы'
+                    'error' => 'Недопустимые символы в выражении'
                 ]);
             }
 
@@ -39,10 +39,20 @@ class CalculatorController extends Controller
         }
     }
 
-
     private function evaluateExpression($expr)
     {
         $expr = str_replace(' ', '', $expr);
+
+        if ($expr === '') {
+            throw new \Exception('Пустое выражение');
+        }
+
+        if (substr($expr, 0, 1) === '-') {
+            if (is_numeric($expr)) {
+                return (float)$expr;
+            }
+            return $this->evaluateExpression('0' . $expr);
+        }
 
         if (is_numeric($expr)) {
             return (float)$expr;
@@ -59,28 +69,28 @@ class CalculatorController extends Controller
             $expr = substr($expr, 0, $lastOpen) . $innerResult . substr($expr, $firstClose + 1);
         }
 
-        $pos = strrpos($expr, '+');
+        $pos = $this->findOperator($expr, '+');
         if ($pos !== false) {
             $left = $this->evaluateExpression(substr($expr, 0, $pos));
             $right = $this->evaluateExpression(substr($expr, $pos + 1));
             return $left + $right;
         }
 
-        $pos = strrpos($expr, '-');
-        if ($pos !== false && $pos > 0) {
+        $pos = $this->findSubtractionOperator($expr);
+        if ($pos !== false) {
             $left = $this->evaluateExpression(substr($expr, 0, $pos));
             $right = $this->evaluateExpression(substr($expr, $pos + 1));
             return $left - $right;
         }
 
-        $pos = strrpos($expr, '*');
+        $pos = $this->findOperator($expr, '*');
         if ($pos !== false) {
             $left = $this->evaluateExpression(substr($expr, 0, $pos));
             $right = $this->evaluateExpression(substr($expr, $pos + 1));
             return $left * $right;
         }
 
-        $pos = strrpos($expr, '/');
+        $pos = $this->findOperator($expr, '/');
         if ($pos !== false) {
             $left = $this->evaluateExpression(substr($expr, 0, $pos));
             $right = $this->evaluateExpression(substr($expr, $pos + 1));
@@ -91,5 +101,35 @@ class CalculatorController extends Controller
         }
 
         throw new \Exception('Неверное выражение');
+    }
+
+    private function findSubtractionOperator($expr)
+    {
+        $length = strlen($expr);
+        for ($i = $length - 1; $i >= 0; $i--) {
+            if ($expr[$i] === '-') {
+                if ($i === 0 || $this->isOperator($expr[$i - 1]) || $expr[$i - 1] === '(') {
+                    continue;
+                }
+                return $i;
+            }
+        }
+        return false;
+    }
+
+    private function findOperator($expr, $operator)
+    {
+        $length = strlen($expr);
+        for ($i = $length - 1; $i >= 0; $i--) {
+            if ($expr[$i] === $operator) {
+                return $i;
+            }
+        }
+        return false;
+    }
+
+    private function isOperator($char)
+    {
+        return in_array($char, ['+', '-', '*', '/']);
     }
 }
