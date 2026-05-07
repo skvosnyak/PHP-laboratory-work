@@ -13,16 +13,12 @@ class CalculatorController extends Controller
         if (empty($expression)) {
             return response()->json([
                 'success' => false,
-                'error' => 'Выражение не может быть пустым'
+                'error' => 'Поле expression не может быть пустым'
             ]);
         }
 
         try {
-            if (!preg_match('/^[0-9+\-*\/\(\)\s\.]+$/', $expression)) {
-                return response()->json([
-                    'success' => false,
-                    'error' => 'Недопустимые символы в выражении'
-                ]);
+            if (!preg_match('/^[0-9+\-*\/\(\)\s\.sin|cos|tan|tg|cot|ctg]+$/i', $expression)) {
             }
 
             $result = $this->evaluateExpression($expression);
@@ -39,12 +35,49 @@ class CalculatorController extends Controller
         }
     }
 
+    private function evaluateTrigonometric($funcName, $degrees)
+    {
+        $radians = deg2rad($degrees);
+        $funcName = strtolower($funcName);
+
+        switch ($funcName) {
+            case 'sin':
+                return sin($radians);
+            case 'cos':
+                return cos($radians);
+            case 'tan':
+            case 'tg':
+                return tan($radians);
+            case 'cot':
+            case 'ctg':
+                $result = cos($radians) / sin($radians);
+                return $result;
+            default:
+                throw new \Exception("Неизвестная функция: $funcName");
+        }
+    }
+
     private function evaluateExpression($expr)
     {
         $expr = str_replace(' ', '', $expr);
 
         if ($expr === '') {
             throw new \Exception('Пустое выражение');
+        }
+
+
+        if (preg_match('/^(sin|cos|tan|tg|cot|ctg)\((\d+(?:\.\d+)?)\)$/i', $expr, $matches)) {
+            $funcName = $matches[1];
+            $degrees = (float)$matches[2];
+            return $this->evaluateTrigonometric($funcName, $degrees);
+        }
+
+
+        while (preg_match('/(sin|cos|tan|tg|cot|ctg)\((\d+(?:\.\d+)?)\)/i', $expr, $matches)) {
+            $funcName = $matches[1];
+            $degrees = (float)$matches[2];
+            $value = $this->evaluateTrigonometric($funcName, $degrees);
+            $expr = str_replace($matches[0], $value, $expr);
         }
 
         if (substr($expr, 0, 1) === '-') {
