@@ -29,3 +29,4 @@ Thumbs.db
 *.local
 *.code-workspace
 .phpunit.cache
+/resources/views/test.blade.php
