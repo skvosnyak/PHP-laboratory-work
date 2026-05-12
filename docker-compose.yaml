@@ -4,14 +4,15 @@ services:
         restart: unless-stopped
         environment:
             APP_ENV: production
-            APP_KEY: ${APP_KEY}
-            APP_URL: ${APP_URL}
+            APP_DEBUG: "true"
+            APP_KEY: "base64:lQOzoN4aYUTmI/NU/PdMiZ8oJajhY1AOv1R68OplC0A="
             DB_CONNECTION: pgsql
             DB_HOST: db
             DB_PORT: 5432
-            DB_DATABASE: ${DB_DATABASE}
-            DB_USERNAME: ${DB_USERNAME}
-            DB_PASSWORD: ${DB_PASSWORD}
+            DB_DATABASE: contacts
+            DB_USERNAME: pguser
+            DB_PASSWORD: sRty$5PouI
+            APP_URL: https://skvosnyak-php-laboratory-work-7581.twc1.net/
         ports:
             - "8080:80"
         depends_on:
